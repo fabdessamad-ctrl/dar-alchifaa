@@ -315,7 +315,7 @@ Tradition prophétique et guérison naturelle
 ## 12. État de réalisation (site web)
 
 - **Fait** : site vitrine bilingue, HTML/CSS/JS statique sans build, mobile-first. Sections : accueil (hero + citation du hadith), pourquoi nous choisir, 3 piliers de services (Hijama, Herbes & huiles, Soin des articulations — bienfaits repris de la section 4bis), FAQ, à propos, témoignages (emplacement réservé, **aucun avis fictif** — à publier après accord écrit des patients, cf. §9), bande CTA, contact (coordonnées, carte Google Maps intégrée, formulaire → message WhatsApp pré-rempli), pied de page. Bouton WhatsApp flottant permanent. Icônes SVG inline (aucune dépendance externe hors polices Google Fonts Cairo/Tajawal/Poppins).
-- **Assets** : `assets/img/logo-dar-alchifaa.png` (logo recadré depuis `images/IMG-20260911-WA0038.jpg`) + `logo-icon.png` (favicon) + 3 visuels issus des infographies fournies (`images/IMG-20260910-WA001{9,20,21,22}.jpg`) réutilisés en hero / à propos.
+- **Assets** : `assets/img/logo-dar-alchifaa.png` (logo recadré depuis `images/IMG-20260911-WA0038.jpg`) + `logo-icon.png` (favicon) + 3 visuels issus des infographies fournies (`images/IMG-20260910-WA001{9,20,21,22}.jpg`) réutilisés en hero / à propos + `assets/video/seance-hijama.mp4` (vidéo verticale, 17 s, fournie par le client — `images/VID-20260910-WA0004.mp4`) intégrée dans une section dédiée (« فيديو » / « Vidéo ») entre Services et FAQ sur les deux pages, en `<video controls preload="metadata">` (pas d'autoplay pour ne pas alourdir le chargement).
 
 ### Architecture bilingue (revue pour le SEO)
 
