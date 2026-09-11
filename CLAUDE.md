@@ -325,6 +325,15 @@ Le site est passé d'un système « une page + bascule JS » à **deux pages HTM
 
 Chaque page porte son propre `<title>`/`<meta description>`, son propre contenu (pas de traduction faite par JS), et se référence l'une l'autre via `<link rel="alternate" hreflang="ar|fr|x-default">`. `assets/js/i18n.js` (ancien dictionnaire de traduction) a été **supprimé** ; `assets/js/main.js` ne gère plus que les comportements communs (menu mobile, révélation au défilement, formulaire → WhatsApp via `window.DAC_LANG` défini par chaque page, année du pied de page). Le sélecteur de langue de l'en-tête est désormais un simple lien `<a>` entre les deux pages (plus robuste pour le SEO qu'un bouton JS).
 
+> ⚠️ **Chemins d'assets : toujours relatifs, jamais `/absolu`.** `index.html` (racine) référence
+> `assets/...` ; `fr/index.html` référence `../assets/...`. Un chemin commençant par `/`
+> (ex. `/assets/css/style.css`) ne fonctionne que si le site est servi par un serveur web à la
+> racine du domaine — il **casse tout l'affichage** (CSS/JS/images non chargés) si on ouvre un
+> fichier `.html` directement en double-clic (`file://`) ou si le site est un jour déployé dans
+> un sous-dossier. Erreur commise puis corrigée le 11 sept. 2026 (signalée par le client après
+> l'ajout de la vidéo — cf. journal). **Toujours tester par double-clic sur `index.html` avant de
+> livrer**, en plus du test via serveur local.
+
 ### SEO (référencement)
 
 - **Contenu approfondi et local** : titres/meta descriptions orientés mots-clés + ville (« …بالدار البيضاء » / « … à Casablanca »), paragraphes de service étoffés (au lieu d'une phrase), section **FAQ** visible (`<details>/<summary>`, sans JS) reprenant des questions réelles (hijama, douleur, différence thérapie/ostéopathie, fréquence des séances, localisation) — **contenu identique** entre le texte visible et le JSON-LD `FAQPage` (règle Google).
