@@ -10,6 +10,11 @@
 > **Dépôt** : `origin` = https://github.com/fabdessamad-ctrl/dar-alchifaa (branche `main`). Créé le
 > 11 sept. 2026. Le `git push` est à lancer par l'utilisateur (mêmes raisons que le projet Intellia) ;
 > les commits sont préparés en local à chaque mise à jour.
+>
+> **Hébergement (gratuit)** : **GitHub Pages**, choisi car le dépôt existe déjà (zéro compte
+> supplémentaire, HTTPS automatique, domaine personnalisé pris en charge). `.nojekyll` ajouté à la
+> racine (désactive le traitement Jekyll, inutile pour un site statique classique). Activation et
+> domaine personnalisé : voir §13.
 
 ---
 
@@ -337,6 +342,12 @@ Chaque page porte son propre `<title>`/`<meta description>`, son propre contenu 
 > un sous-dossier. Erreur commise puis corrigée le 11 sept. 2026 (signalée par le client après
 > l'ajout de la vidéo — cf. journal). **Toujours tester par double-clic sur `index.html` avant de
 > livrer**, en plus du test via serveur local.
+>
+> Même famille de bug, corrigée le 11 sept. 2026 : le sélecteur de langue liait vers `fr/` et
+> `../` (style « dossier »). Sous `file://`, un lien-dossier n'ouvre **pas** automatiquement
+> `index.html` (comportement qui n'existe que sur un vrai serveur web) → la page FR semblait
+> cassée en double-clic. Corrigé en liens de fichier explicites : `fr/index.html` / `../index.html`
+> (fonctionne identiquement en local et sur un serveur).
 
 ### SEO (référencement)
 
@@ -349,3 +360,48 @@ Chaque page porte son propre `<title>`/`<meta description>`, son propre contenu 
 
 - **À faire par le client** : héberger le site (souscrire `dar-alchifaa.ma` + hébergement), créer les comptes réseaux sociaux (TikTok/Facebook/YouTube/LinkedIn — §4 ci-dessus) puis remplacer les liens `href="#"` du pied de page et de la fiche contact, compléter les horaires d'ouverture et les noms/qualifications des praticiens, obtenir l'accord écrit des patients avant de publier de vrais témoignages, et fournir/valider un logo vectoriel haute résolution si possible (le PNG actuel provient d'une capture d'écran WhatsApp recadrée).
 - **À faire ensuite (hors périmètre de cette étape)** : contenu des pages réseaux sociaux (TikTok/Facebook/YouTube/LinkedIn — bios et premiers posts, cf. §4 et §5 ci-dessus, déjà rédigés dans ce brief et prêts à être publiés une fois les comptes créés).
+
+---
+
+## 13. Hébergement — GitHub Pages (gratuit)
+
+### A. Pousser le code (préalable)
+
+```bash
+git -C "E:/Kinésithérapie_claude" push -u origin main
+```
+
+### B. Activer GitHub Pages
+
+1. Sur github.com → dépôt **dar-alchifaa** → **Settings** → **Pages**
+2. **Source** : *Deploy from a branch*
+3. **Branch** : `main` / dossier `/ (root)` → **Save**
+4. Après 1–2 min, le site est en ligne sur `https://fabdessamad-ctrl.github.io/dar-alchifaa/`
+   (page AR à la racine, FR sur `.../dar-alchifaa/fr/`) — les chemins relatifs du site
+   fonctionnent tels quels dans ce sous-dossier (voir avertissement §12).
+
+### C. Brancher le domaine `dar-alchifaa.ma` une fois souscrit
+
+1. Chez le registrar/hébergeur du domaine, créer un enregistrement DNS **CNAME** :
+   `www.dar-alchifaa.ma` → `fabdessamad-ctrl.github.io`
+   (un domaine racine `dar-alchifaa.ma` sans `www` nécessite des enregistrements **A** vers les IP
+   GitHub Pages : `185.199.108.153`, `.109.153`, `.110.153`, `.111.153` — à faire aussi si vous
+   voulez que le site réponde sans `www`)
+2. Dans **Settings → Pages → Custom domain**, saisir `dar-alchifaa.ma` (ou `www.dar-alchifaa.ma`)
+   → GitHub crée automatiquement un fichier `CNAME` à la racine du dépôt et provisionne le
+   certificat HTTPS (peut prendre jusqu'à 24 h)
+3. Cocher **Enforce HTTPS** une fois le certificat prêt
+4. Mettre à jour si besoin les URLs codées en dur (canonical, hreflang, Open Graph, JSON-LD,
+   `robots.txt`, `sitemap.xml`) — elles pointent déjà vers `https://dar-alchifaa.ma/`, donc **aucun
+   changement de code n'est nécessaire** si le domaine final est bien `dar-alchifaa.ma`
+
+### Limites de GitHub Pages à connaître
+
+- Sites statiques uniquement (compatible : c'est notre cas, HTML/CSS/JS sans backend)
+- Formulaire de contact déjà conçu pour ça : il n'envoie rien côté serveur, il ouvre WhatsApp
+  (`wa.me`) avec le message pré-rempli — aucun serveur de mail nécessaire
+- Pas de httpS→HTTP forcé avant que le certificat du domaine personnalisé soit prêt (24 h max)
+- Dépôt **public** requis pour un site GitHub Pages gratuit sur un compte personnel classique — si
+  le dépôt doit rester **privé**, GitHub Pages gratuit ne fonctionne pas dessus (il faudrait un
+  compte GitHub Pro/Team, ou choisir un autre hébergeur gratuit comme Netlify/Cloudflare Pages qui
+  supportent Pages depuis un dépôt privé sur leur offre gratuite)
