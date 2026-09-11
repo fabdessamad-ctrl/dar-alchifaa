@@ -6,6 +6,10 @@
 > **Toutes les pages et tous les contenus doivent exister en deux langues : Arabe (langue principale, RTL) et Français (langue secondaire, LTR).**
 >
 > **Assets disponibles** : `/assets/logo-dar-al-chifaa.jpg` (logo officiel), `/assets/carte-visite-dar-al-chifaa.pdf` (carte de visite recto/verso, référence de charte graphique).
+>
+> **Dépôt** : `origin` = https://github.com/fabdessamad-ctrl/dar-alchifaa (branche `main`). Créé le
+> 11 sept. 2026. Le `git push` est à lancer par l'utilisateur (mêmes raisons que le projet Intellia) ;
+> les commits sont préparés en local à chaque mise à jour.
 
 ---
 
